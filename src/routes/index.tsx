@@ -8,7 +8,7 @@ import {
 } from '@/libs/auth'
 
 import { LoginPage } from '@/pages/login'
-import { DashboardPage } from '@/pages/dashboard'
+import { OverviewPage } from '@/pages/overview'
 import { TicketPage } from '@/pages/ticket'
 
 export const router = createBrowserRouter([
@@ -23,9 +23,8 @@ export const router = createBrowserRouter([
     action: loginAction,
   },
   {
-    id: 'dashboard',
-    path: '/dashboard',
-    element: <DashboardPage />,
+    path: '/overview',
+    element: <OverviewPage />,
     loader: protectedLoader,
   },
   {

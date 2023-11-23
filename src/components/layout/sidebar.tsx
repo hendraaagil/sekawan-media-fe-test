@@ -6,7 +6,7 @@ import { Logout } from '@/components/layout'
 import { twMerge } from 'tailwind-merge'
 
 const navigations = [
-  { label: 'Overview', Icon: ChartPieIcon, path: '/dashboard' },
+  { label: 'Overview', Icon: ChartPieIcon, path: '/overview' },
   { label: 'Tickets', Icon: TicketIcon, path: '/ticket' },
 ]
 

@@ -1,4 +1,4 @@
-import { User } from '@/providers/auth'
+import { User } from '@/interfaces/user'
 
 // This is the API that we will use to mock the authentication process.
 export const login = async (email: string, password: string) => {

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Icon } from '@tremor/react'
 import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 
-import { userQuery } from '@/queries/dashboard'
+import { userQuery } from '@/queries/auth'
 import { Sidebar } from '@/components/layout'
 import { Heading } from '@/components/ui'
 
@@ -19,8 +19,8 @@ export const Container = ({
   return (
     <div className="flex">
       <Sidebar />
-      <main className="w-full bg-gray-300">
-        <header className="flex items-center justify-between px-4 py-5 shadow">
+      <main className="w-full bg-gray-100">
+        <header className="flex items-center justify-between p-6">
           <Heading size="h2">{title}</Heading>
           <div className="flex items-center">
             <div className="hidden items-center space-x-2 border-r-2 border-r-gray-400 px-4 sm:flex">

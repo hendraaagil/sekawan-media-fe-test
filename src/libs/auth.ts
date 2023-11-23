@@ -23,7 +23,7 @@ export const loginAction = async ({ request }: LoaderFunctionArgs) => {
     console.error(error)
   }
 
-  return redirect('/dashboard')
+  return redirect('/overview')
 }
 
 export const logoutAction = async () => {
@@ -33,7 +33,7 @@ export const logoutAction = async () => {
 
 export const loginLoader = () => {
   if (authProvider.token) {
-    return redirect('/dashboard')
+    return redirect('/overview')
   }
 
   return null

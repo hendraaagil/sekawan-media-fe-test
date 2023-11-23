@@ -1,12 +1,5 @@
 import { login } from '@/apis/auth'
 
-export interface User {
-  email: string
-  name: string
-  pictureUrl: string
-  role: 'admin' | 'guest'
-}
-
 export interface AuthProvider {
   email: string | null
   token: string | null
