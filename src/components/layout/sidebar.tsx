@@ -11,7 +11,7 @@ const navigations = [
 ]
 
 export const Sidebar = () => (
-  <div className="flex min-h-screen min-w-fit flex-col bg-gray-800 py-4 text-gray-300 lg:min-w-[20rem]">
+  <div className="fixed flex h-screen min-w-fit flex-col bg-gray-800 py-4 text-gray-300 lg:min-w-[20rem]">
     <div className="flex items-center px-6 py-4 sm:px-8">
       <img src="/vite.svg" alt="Vite's logo" width={36} height={36} />
       <span className="ml-4 hidden text-xl font-bold md:block">Dashboard</span>

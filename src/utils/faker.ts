@@ -14,6 +14,13 @@ const range = (len: number) => {
 }
 
 const newTicket = (): Ticket => {
+  const createdAt = faker.date
+    .between({
+      from: '2023-01-01T00:00:00.000Z',
+      to: new Date().toISOString(),
+    })
+    .toISOString()
+
   return {
     title: faker.lorem.sentence(4),
     content: faker.lorem.paragraph(10),
@@ -21,16 +28,11 @@ const newTicket = (): Ticket => {
     customerName: faker.person.fullName(),
     updatedAt: faker.date
       .between({
-        from: '2023-07-01T00:00:00.000Z',
-        to: '2024-01-01T00:00:00.000Z',
+        from: createdAt,
+        to: new Date().toISOString(),
       })
       .toISOString(),
-    createdAt: faker.date
-      .between({
-        from: '2023-01-01T00:00:00.000Z',
-        to: '2023-06-30T00:00:00.000Z',
-      })
-      .toISOString(),
+    createdAt: createdAt,
     priority: faker.helpers.shuffle<Ticket['priority']>([
       'low',
       'medium',

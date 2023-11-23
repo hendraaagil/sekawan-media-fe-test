@@ -1,21 +1,35 @@
+import clsx from 'clsx'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { format, formatDistance } from 'date-fns'
+
 import {
   ColumnDef,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { format, formatDistance } from 'date-fns'
+import {
+  Bars3CenterLeftIcon,
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  EllipsisVerticalIcon,
+} from '@heroicons/react/24/solid'
+import { Icon } from '@tremor/react'
 
 import { ticketListQuery } from '@/queries/ticket'
 import { Ticket } from '@/interfaces/ticket'
 import { Heading, PriorityChip } from '@/components/ui'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 const columns: ColumnDef<Ticket>[] = [
   {
     header: 'Ticket Details',
+    size: 450,
     footer: (props) => props.column.id,
     accessorFn: (row) => row.title,
     cell: (props) => {
@@ -31,6 +45,7 @@ const columns: ColumnDef<Ticket>[] = [
           <div className="ml-4">
             <p className="font-bold">{title}</p>
             <p className="text-sm text-tremor-content-subtle">
+              Updated{' '}
               {formatDistance(new Date(updatedAt), new Date(), {
                 addSuffix: true,
               })}
@@ -42,6 +57,7 @@ const columns: ColumnDef<Ticket>[] = [
   },
   {
     header: 'Customer Name',
+    size: 200,
     footer: (props) => props.column.id,
     accessorFn: (row) => row.customerName,
     cell: (props) => {
@@ -74,19 +90,39 @@ const columns: ColumnDef<Ticket>[] = [
       return <PriorityChip priority={priority} />
     },
   },
+  {
+    header: 'Actions',
+    size: 50,
+    footer: (props) => props.column.id,
+    cell: () => (
+      <Icon
+        icon={EllipsisVerticalIcon}
+        tooltip="Actions"
+        color="gray"
+        size="lg"
+        className="cursor-pointer"
+      />
+    ),
+  },
 ]
 
 export const TicketList = () => {
   const { data: tickets } = useQuery(ticketListQuery())
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
     data: tickets || [],
     columns: columns,
+    state: {
+      sorting: sorting,
+    },
+    onSortingChange: setSorting,
     // Pipeline
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     // Options
-    debugTable: process.env.NODE_ENV === 'development',
+    debugAll: process.env.NODE_ENV === 'development',
   })
 
   return (
@@ -99,18 +135,41 @@ export const TicketList = () => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const canSort = header.column.getCanSort()
+                const isSorted = header.column.getIsSorted()
+
                 return (
                   <th
                     key={header.id}
                     colSpan={header.colSpan}
-                    className="py-2 text-start text-tremor-content-subtle first:pl-8 last:pr-8"
+                    className={clsx(
+                      'py-2 text-start text-tremor-content-subtle first:pl-8 last:pr-8',
+                      {
+                        'transition-colors hover:bg-gray-100': canSort,
+                      },
+                    )}
+                    style={{ width: header.getSize() }}
                   >
                     {header.isPlaceholder ? null : (
-                      <div>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
+                      <div
+                        className={clsx('flex items-center', {
+                          'cursor-pointer select-none': canSort,
+                        })}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {{
+                          asc: <BarsArrowUpIcon className="h-6 w-6" />,
+                          desc: <BarsArrowDownIcon className="h-6 w-6" />,
+                        }[isSorted as string] ?? null}
+                        {!isSorted && canSort && (
+                          <Bars3CenterLeftIcon className="h-6 w-6" />
                         )}
+                        <span className="ml-2">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                        </span>
                       </div>
                     )}
                   </th>
@@ -125,7 +184,11 @@ export const TicketList = () => {
               <tr key={row.id} className="border-y">
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <td key={cell.id} className="py-4 first:pl-8 last:pr-8">
+                    <td
+                      key={cell.id}
+                      className="py-4 first:pl-8 last:pr-8"
+                      style={{ width: cell.column.getSize() }}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
@@ -172,7 +235,6 @@ export const TicketList = () => {
             max={table.getPageCount()}
             type="number"
             value={table.getState().pagination.pageIndex + 1}
-            defaultValue={table.getState().pagination.pageIndex + 1}
             onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0
               table.setPageIndex(page)

@@ -1,11 +1,8 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Icon } from '@tremor/react'
-import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 
 import { userQuery } from '@/queries/auth'
-import { Sidebar } from '@/components/layout'
-import { Heading } from '@/components/ui'
+import { Sidebar, Topbar } from '@/components/layout'
 
 export const Container = ({
   children,
@@ -17,40 +14,12 @@ export const Container = ({
   const { data: user } = useQuery(userQuery())
 
   return (
-    <div className="flex">
+    <>
       <Sidebar />
-      <main className="w-full bg-gray-100">
-        <header className="flex items-center justify-between p-6">
-          <Heading size="h2">{title}</Heading>
-          <div className="flex items-center">
-            <div className="hidden items-center space-x-2 border-r-2 border-r-gray-400 px-4 sm:flex">
-              <Icon
-                icon={MagnifyingGlassIcon}
-                color="gray"
-                tooltip="Search tasks"
-                className="cursor-pointer"
-              />
-              <Icon
-                icon={BellIcon}
-                color="gray"
-                tooltip="Show notifications"
-                className="cursor-pointer"
-              />
-            </div>
-            <div className="flex items-center px-4">
-              <span className="mr-4 hidden font-semibold text-tremor-content-emphasis sm:block">
-                {user?.name}
-              </span>
-              <img
-                src={user?.pictureUrl}
-                alt="Picture"
-                className="h-12 w-12 rounded-full border-2 border-gray-50 shadow"
-              />
-            </div>
-          </div>
-        </header>
+      <main className="min-h-screen w-full bg-gray-100 pl-20 sm:pl-24 md:pl-56 lg:pl-80">
+        <Topbar title={title} user={user} />
         {children}
       </main>
-    </div>
+    </>
   )
 }

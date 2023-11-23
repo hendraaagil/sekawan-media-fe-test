@@ -34,5 +34,5 @@ export const getTicketGraph = async (): Promise<TicketGraph[]> => {
 export const getTickets = async (): Promise<Ticket[]> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
 
-  return makeTickets(250)
+  return makeTickets(200)
 }
