@@ -15,8 +15,10 @@
     "@heroicons/react": "^2.0.18",
     "@tremor/react": "^3.11.1",
     "clsx": "^2.0.0",
+    "i18next": "^23.7.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.5.0",
     "react-router-dom": "^6.20.0",
     "tailwind-variants": "^0.1.18",
     "zod": "^3.22.4"

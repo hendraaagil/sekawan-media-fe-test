@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import { ZodError, z } from 'zod'
 import { Form, useActionData, useNavigation } from 'react-router-dom'
 import { Button, TextInput } from '@tremor/react'
@@ -54,7 +55,7 @@ export const LoginForm = () => {
         />
       </div>
       <Button className="w-full" loading={isLoggingIn}>
-        Log In
+        {t('login.submit')}
       </Button>
     </Form>
   )
