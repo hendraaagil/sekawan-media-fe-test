@@ -17,12 +17,24 @@ dependencies:
   '@tremor/react':
     specifier: ^3.11.1
     version: 3.11.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.5)
+  clsx:
+    specifier: ^2.0.0
+    version: 2.0.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-router-dom:
+    specifier: ^6.20.0
+    version: 6.20.0(react-dom@18.2.0)(react@18.2.0)
+  tailwind-variants:
+    specifier: ^0.1.18
+    version: 0.1.18(tailwindcss@3.3.5)
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 devDependencies:
   '@types/node':
@@ -472,6 +484,11 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  /@remix-run/router@1.13.0:
+    resolution: {integrity: sha512-5dMOnVnefRsl4uRnAdoWjtVTdh8e6aZqgM4puy9nmEADH72ck+uXwzpJLEKE9Q6F8ZljNewLgmTfkxUrBdv4WA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
 
   /@rollup/rollup-android-arm-eabi@4.5.1:
     resolution: {integrity: sha512-YaN43wTyEBaMqLDYeze+gQ4ZrW5RbTEGtT5o1GVDkhpdNcsLTnLRcLccvwy3E9wiDKWg9RIhuoy3JQKDRBfaZA==}
@@ -2007,6 +2024,29 @@ packages:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: false
 
+  /react-router-dom@6.20.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-CbcKjEyiSVpA6UtCHOIYLUYn/UJfwzp55va4yEfpk7JBN3GPqWfHrdLkAvNCcpXr8QoihcDMuk0dzWZxtlB/mQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.13.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 6.20.0(react@18.2.0)
+    dev: false
+
+  /react-router@6.20.0(react@18.2.0):
+    resolution: {integrity: sha512-pVvzsSsgUxxtuNfTHC4IxjATs10UaAtvLGVSA1tbUE4GDaOSU1Esu2xF5nWLz7KPiMuW8BJWuPFdlGYJ7/rW0w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.13.0
+      react: 18.2.0
+    dev: false
+
   /react-smooth@2.0.5(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BMP2Ad42tD60h0JW6BFaib+RJuV5dsXJK9Baxiv/HlNFjvRLqA9xrNKxVWnUIZPQfzUwGXIlU/dSYLU+54YGQA==}
     peerDependencies:
@@ -2226,6 +2266,16 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
+  /tailwind-variants@0.1.18(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-yoydMYm3FbZRw7wak+E2sqwYv2Uo3YWRqVZR03DGqDGm0ytzDrEnWO/Q/GMHdhaz8adOvycKw/bwCgQFCfmfhg==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwindcss: '*'
+    dependencies:
+      tailwind-merge: 1.14.0
+      tailwindcss: 3.3.5
+    dev: false
+
   /tailwindcss@3.3.5:
     resolution: {integrity: sha512-5SEZU4J7pxZgSkv7FP1zY8i2TIAOooNZ1e/OGtxIEv6GltpoiXUqWvLy89+a10qYTB1N5Ifkuw9lqQkN9sscvA==}
     engines: {node: '>=14.0.0'}
@@ -2417,3 +2467,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
