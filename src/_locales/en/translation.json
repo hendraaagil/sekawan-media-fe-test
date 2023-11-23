@@ -3,5 +3,8 @@
     "title": "Login to Dashboard",
     "subtitle": "Enter your email and password below",
     "submit": "Log In"
+  },
+  "dashboard": {
+    "logout": "Log Out"
   }
 }

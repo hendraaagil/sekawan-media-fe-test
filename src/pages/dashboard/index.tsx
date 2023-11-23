@@ -1,9 +1,5 @@
-import { Heading } from '@/components/ui'
+import { Container } from '@/components/layout'
 
 export const DashboardPage = () => {
-  return (
-    <div>
-      <Heading>Dashboard</Heading>
-    </div>
-  )
+  return <Container title="Overview"></Container>
 }

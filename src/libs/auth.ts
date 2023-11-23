@@ -26,16 +26,23 @@ export const loginAction = async ({ request }: LoaderFunctionArgs) => {
   return redirect('/dashboard')
 }
 
+export const logoutAction = async () => {
+  await authProvider.logout()
+  return redirect('/')
+}
+
 export const loginLoader = () => {
   if (authProvider.token) {
     return redirect('/dashboard')
   }
+
   return null
 }
 
-export const protectedLoader = () => {
+export const protectedLoader = async () => {
   if (!authProvider.token) {
     return redirect('/login')
   }
-  return authProvider.getUser(authProvider.token)
+
+  return null
 }

@@ -1,9 +1,15 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 
-import { loginAction, loginLoader, protectedLoader } from '@/libs/auth'
+import {
+  loginAction,
+  loginLoader,
+  logoutAction,
+  protectedLoader,
+} from '@/libs/auth'
 
 import { LoginPage } from '@/pages/login'
 import { DashboardPage } from '@/pages/dashboard'
+import { TicketPage } from '@/pages/ticket'
 
 export const router = createBrowserRouter([
   {
@@ -21,5 +27,15 @@ export const router = createBrowserRouter([
     path: '/dashboard',
     element: <DashboardPage />,
     loader: protectedLoader,
+  },
+  {
+    id: 'ticket',
+    path: '/ticket',
+    element: <TicketPage />,
+    loader: protectedLoader,
+  },
+  {
+    path: '/logout',
+    action: logoutAction,
   },
 ])

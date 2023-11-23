@@ -34,6 +34,7 @@ export const LoginForm = () => {
             actionData?.errors.email ? actionData?.errors.email[0] : ''
           }
           error={!!actionData?.errors.email}
+          defaultValue="admin@agil.dev"
         />
       </div>
       <div className="w-full">
@@ -52,6 +53,7 @@ export const LoginForm = () => {
             actionData?.errors.password ? actionData?.errors.password[0] : ''
           }
           error={!!actionData?.errors.password}
+          defaultValue="hendra123"
         />
       </div>
       <Button className="w-full" loading={isLoggingIn}>

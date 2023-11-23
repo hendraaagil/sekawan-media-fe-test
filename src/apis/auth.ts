@@ -16,7 +16,7 @@ export const login = async (email: string, password: string) => {
   return { token }
 }
 
-export const getUser = async (token: string): Promise<User> => {
+export const getUser = async (): Promise<User> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
 
   const email = localStorage.getItem('email') || ''
@@ -27,5 +27,5 @@ export const getUser = async (token: string): Promise<User> => {
       ? 'https://randomuser.me/api/portraits/lego/0.jpg'
       : 'https://randomuser.me/api/portraits/lego/1.jpg'
 
-  return { email, name, pictureUrl, role, token }
+  return { email, name, pictureUrl, role }
 }
