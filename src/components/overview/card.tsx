@@ -14,7 +14,7 @@ export const OverviewCard = ({
     >
       {title}
     </p>
-    <Metric className="text-6xl transition-colors group-hover:text-tremor-brand-emphasis">
+    <Metric className="transition-colors group-hover:text-tremor-brand-emphasis">
       {value}
     </Metric>
   </Card>

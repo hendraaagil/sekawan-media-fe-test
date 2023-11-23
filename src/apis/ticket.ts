@@ -1,4 +1,5 @@
-import { TicketGraph, TicketOverview } from '@/interfaces/ticket'
+import { Ticket, TicketGraph, TicketOverview } from '@/interfaces/ticket'
+import { makeTickets } from '@/utils/faker'
 
 export const getTicketOverview = async (): Promise<TicketOverview> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
@@ -28,4 +29,10 @@ export const getTicketGraph = async (): Promise<TicketGraph[]> => {
     { month: 'Nov', 'Total Tickets': 100 },
     { month: 'Dec', 'Total Tickets': 120 },
   ]
+}
+
+export const getTickets = async (): Promise<Ticket[]> => {
+  await new Promise((r) => setTimeout(r, 1000)) // fake delay
+
+  return makeTickets(250)
 }

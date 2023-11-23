@@ -21,7 +21,7 @@ export const getUser = async (): Promise<User> => {
 
   const email = localStorage.getItem('email') || ''
   const role = email === 'admin@agil.dev' ? 'admin' : 'guest'
-  const name = role === 'admin' ? 'Hendra Agil' : 'Guest Agil'
+  const name = role === 'admin' ? 'Hendra Agil' : 'Guest User'
   const pictureUrl =
     role === 'admin'
       ? 'https://randomuser.me/api/portraits/lego/0.jpg'
