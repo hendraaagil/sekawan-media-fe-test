@@ -1,4 +1,5 @@
 import { tv } from 'tailwind-variants'
+import { TicketPriority } from '@/constants/ticket'
 
 const styles = tv({
   base: 'rounded-full px-4 py-1 text-xs font-medium uppercase text-white',
@@ -14,8 +15,6 @@ const styles = tv({
   },
 })
 
-export const PriorityChip = ({
-  priority,
-}: {
-  priority: 'low' | 'medium' | 'high'
-}) => <span className={styles({ priority })}>{priority}</span>
+export const PriorityChip = ({ priority }: { priority: TicketPriority }) => (
+  <span className={styles({ priority })}>{priority}</span>
+)

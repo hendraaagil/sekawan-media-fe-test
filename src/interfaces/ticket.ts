@@ -1,3 +1,5 @@
+import { TicketPriority, TicketStatus } from '@/constants/ticket'
+
 export interface TicketOverview {
   totalUnresolved: number
   totalOverdue: number
@@ -17,6 +19,6 @@ export interface Ticket {
   customerName: string
   updatedAt: string
   createdAt: string
-  priority: 'low' | 'medium' | 'high'
-  status: 'pending' | 'approved' | 'rejected'
+  priority: TicketPriority
+  status: TicketStatus
 }

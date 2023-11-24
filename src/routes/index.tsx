@@ -6,6 +6,7 @@ import {
   logoutAction,
   protectedLoader,
 } from '@/libs/auth'
+import { ticketAction } from '@/libs/ticket'
 
 import { LoginPage } from '@/pages/login'
 import { OverviewPage } from '@/pages/overview'
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
     path: '/ticket',
     element: <TicketPage />,
     loader: protectedLoader,
+    action: ticketAction,
   },
   {
     path: '/logout',

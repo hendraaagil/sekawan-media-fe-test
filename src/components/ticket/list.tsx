@@ -18,13 +18,12 @@ import {
   BarsArrowUpIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  EllipsisVerticalIcon,
 } from '@heroicons/react/24/solid'
-import { Icon } from '@tremor/react'
 
 import { ticketListQuery } from '@/queries/ticket'
 import { Ticket } from '@/interfaces/ticket'
-import { Heading, PriorityChip } from '@/components/ui'
+import { PriorityChip } from '@/components/ui'
+import { ListAction } from '@/components/ticket'
 
 const columns: ColumnDef<Ticket>[] = [
   {
@@ -94,15 +93,7 @@ const columns: ColumnDef<Ticket>[] = [
     header: 'Actions',
     size: 50,
     footer: (props) => props.column.id,
-    cell: () => (
-      <Icon
-        icon={EllipsisVerticalIcon}
-        tooltip="Actions"
-        color="gray"
-        size="lg"
-        className="cursor-pointer"
-      />
-    ),
+    cell: () => <ListAction />,
   },
 ]
 
@@ -126,10 +117,7 @@ export const TicketList = () => {
   })
 
   return (
-    <div className="rounded-tremor-default bg-white shadow-tremor-card">
-      <div className="p-8">
-        <Heading size="h3">All Tickets</Heading>
-      </div>
+    <>
       <table className="w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -181,7 +169,10 @@ export const TicketList = () => {
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id} className="border-y">
+              <tr
+                key={row.id}
+                className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100"
+              >
                 {row.getVisibleCells().map((cell) => {
                   return (
                     <td
@@ -201,6 +192,7 @@ export const TicketList = () => {
           })}
         </tbody>
       </table>
+
       <div className="flex items-center justify-end gap-2 p-4">
         <div className="flex items-center">
           <span className="text-sm text-tremor-content-subtle">
@@ -259,6 +251,6 @@ export const TicketList = () => {
           <ChevronRightIcon className="h-4 w-4" />
         </button>
       </div>
-    </div>
+    </>
   )
 }

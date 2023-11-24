@@ -33,16 +33,16 @@ const newTicket = (): Ticket => {
       })
       .toISOString(),
     createdAt: createdAt,
-    priority: faker.helpers.shuffle<Ticket['priority']>([
+    priority: faker.helpers.shuffle([
       'low',
       'medium',
       'high',
-    ])[0]!,
-    status: faker.helpers.shuffle<Ticket['status']>([
+    ])[0]! as Ticket['priority'],
+    status: faker.helpers.shuffle([
       'pending',
       'approved',
       'rejected',
-    ])[0]!,
+    ])[0]! as Ticket['status'],
   }
 }
 

@@ -10,3 +10,5 @@ export const authSchema = z
       .min(8, 'Password must be at least 8 characters!'),
   })
   .required()
+
+export type AuthSchema = z.infer<typeof authSchema>

@@ -1,9 +1,9 @@
 import { t } from 'i18next'
-import { ZodError, z } from 'zod'
+import { ZodError } from 'zod'
 import { Form, useActionData, useNavigation } from 'react-router-dom'
 import { Button, TextInput } from '@tremor/react'
 
-import { authSchema } from '@/schemas/auth'
+import { AuthSchema } from '@/schemas/auth'
 
 export const LoginForm = () => {
   const navigation = useNavigation()
@@ -12,11 +12,7 @@ export const LoginForm = () => {
     navigation.formData?.get('password') != null
 
   const actionData = useActionData() as
-    | {
-        errors: ZodError<
-          z.infer<typeof authSchema>
-        >['formErrors']['fieldErrors']
-      }
+    | { errors: ZodError<AuthSchema>['formErrors']['fieldErrors'] }
     | undefined
 
   return (

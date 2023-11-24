@@ -1,4 +1,6 @@
 import { Ticket, TicketGraph, TicketOverview } from '@/interfaces/ticket'
+import { authProvider } from '@/providers/auth'
+import { TicketSchema } from '@/schemas/ticket'
 import { makeTickets } from '@/utils/faker'
 
 export const getTicketOverview = async (): Promise<TicketOverview> => {
@@ -35,4 +37,29 @@ export const getTickets = async (): Promise<Ticket[]> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
 
   return makeTickets(200)
+}
+
+export const createTicket = async (ticket: TicketSchema): Promise<Ticket> => {
+  await new Promise((r) => setTimeout(r, 1000)) // fake delay
+
+  const createdTicket = {
+    title: ticket.title,
+    content: ticket.content,
+    pictureUrl:
+      authProvider.pictureUrl || 'https://picsum.photos/seed/picsum/200/300',
+    customerName: authProvider.name || 'John Doe',
+    updatedAt: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
+    priority: ticket.priority as Ticket['priority'],
+    status: 'pending' as Ticket['status'],
+  }
+  const existingTickets = localStorage.getItem('myTickets')
+
+  let myTickets: Ticket[] = [createdTicket]
+  if (existingTickets) {
+    myTickets = [...JSON.parse(existingTickets), createdTicket]
+  }
+  localStorage.setItem('myTickets', JSON.stringify(myTickets))
+
+  return createdTicket
 }
