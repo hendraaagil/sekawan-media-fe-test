@@ -39,7 +39,7 @@ export const DetailTicket = ({
             alt={`${ticket.customerName}'s picture`}
             className="mr-4 h-12 w-12 rounded-full"
           />
-          <p>{ticket.customerName}</p>
+          <p className="dark:text-white">{ticket.customerName}</p>
         </div>
       </div>
       <div className="space-y-1">
@@ -52,23 +52,23 @@ export const DetailTicket = ({
       </div>
       <div className="space-y-1">
         <p className="text-sm text-tremor-content-subtle">Created At</p>
-        <p className="capitalize">
+        <p className="capitalize dark:text-white">
           {format(new Date(ticket.createdAt), 'PP p')}
         </p>
       </div>
       <div className="space-y-1">
         <p className="text-sm text-tremor-content-subtle">Last Updated</p>
-        <p className="capitalize">
+        <p className="capitalize dark:text-white">
           {format(new Date(ticket.updatedAt), 'PP p')}
         </p>
       </div>
       <div className="space-y-1">
         <p className="text-sm text-tremor-content-subtle">Title</p>
-        <p>{ticket.title}</p>
+        <p className="dark:text-white">{ticket.title}</p>
       </div>
       <div className="space-y-1">
         <p className="text-sm text-tremor-content-subtle">Description</p>
-        <p>{ticket.content}</p>
+        <p className="dark:text-white">{ticket.content}</p>
       </div>
       {isAdmin && ticket.status === TicketStatus.Pending ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

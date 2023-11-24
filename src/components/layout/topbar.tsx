@@ -8,7 +8,7 @@ export const Topbar = ({ title, user }: { title: string; user?: User }) => (
   <header className="flex items-center justify-between p-6">
     <Heading size="h2">{title}</Heading>
     <div className="flex items-center">
-      <div className="hidden items-center space-x-2 border-r-2 border-r-gray-400 px-4 sm:flex">
+      <div className="hidden items-center space-x-2 border-r border-r-gray-400 px-4 sm:flex">
         <Icon
           icon={MagnifyingGlassIcon}
           color="gray"
@@ -23,7 +23,7 @@ export const Topbar = ({ title, user }: { title: string; user?: User }) => (
         />
       </div>
       <div className="flex items-center px-4">
-        <span className="mr-4 hidden font-semibold text-tremor-content-emphasis sm:block">
+        <span className="mr-4 hidden font-semibold text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis sm:block">
           {user?.name}
         </span>
         <img

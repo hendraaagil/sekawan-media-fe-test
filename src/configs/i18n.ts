@@ -1,11 +1,12 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { settingProvider } from '@/providers/setting'
 
 import translationEn from '@/_locales/en/translation.json'
 import translationId from '@/_locales/id/translation.json'
 
 i18n.use(initReactI18next).init({
-  lng: 'en',
+  lng: settingProvider.lang,
   debug: process.env.NODE_ENV === 'development',
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default

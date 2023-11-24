@@ -3,7 +3,7 @@ import React from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 
 const styles = tv({
-  base: 'font-bold text-tremor-content-emphasis',
+  base: 'font-bold text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis',
   variants: {
     size: {
       h1: 'text-3xl',

@@ -33,7 +33,7 @@ export const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <HeadlessDialog.Panel className="ring-tremor shadow-tremor w-full max-w-3xl transform rounded-tremor-default bg-white p-6 text-left align-middle transition-all">
+              <HeadlessDialog.Panel className="ring-tremor shadow-tremor w-full max-w-3xl transform rounded-tremor-default bg-white p-6 text-left align-middle transition-all dark:bg-dark-tremor-background">
                 {children}
               </HeadlessDialog.Panel>
             </Transition.Child>

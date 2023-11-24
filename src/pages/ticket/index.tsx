@@ -15,7 +15,7 @@ export const TicketPage = () => {
   return (
     <Container title="Tickets">
       <div className="p-6">
-        <div className="rounded-tremor-default bg-white shadow-tremor-card">
+        <div className="rounded-tremor-default bg-white shadow-tremor-card dark:bg-dark-tremor-background">
           <div className="flex items-center justify-between p-8">
             <Heading size="h3">All Tickets</Heading>
             <Button size="lg" onClick={() => setShowCreate(true)}>

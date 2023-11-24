@@ -1,6 +1,7 @@
 export interface Menu {
   label: string
   path: string
+  borderTop?: boolean
 }
 
 export interface User {

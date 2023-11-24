@@ -42,7 +42,7 @@ const columns: ColumnDef<Ticket>[] = [
             className="h-12 w-12 rounded-full"
           />
           <div className="ml-4">
-            <p className="font-bold">{title}</p>
+            <p className="font-bold dark:text-white">{title}</p>
             <p className="text-sm text-tremor-content-subtle">
               Updated{' '}
               {formatDistance(new Date(updatedAt), new Date(), {
@@ -61,7 +61,7 @@ const columns: ColumnDef<Ticket>[] = [
     accessorFn: (row) => row.customerName,
     cell: (props) => {
       const { customerName } = props.row.original
-      return <strong>{customerName}</strong>
+      return <strong className="dark:text-white">{customerName}</strong>
     },
   },
   {
@@ -72,7 +72,9 @@ const columns: ColumnDef<Ticket>[] = [
       const { createdAt } = props.row.original
       return (
         <div>
-          <p className="font-bold">{format(new Date(createdAt), 'PP')}</p>
+          <p className="font-bold dark:text-white">
+            {format(new Date(createdAt), 'PP')}
+          </p>
           <p className="text-sm text-tremor-content-subtle">
             {format(new Date(createdAt), 'p')}
           </p>
@@ -182,7 +184,7 @@ export const TicketList = () => {
               return (
                 <tr
                   key={row.id}
-                  className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100"
+                  className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100 dark:border-y-gray-800 dark:hover:bg-gray-800"
                   onClick={() => {
                     setTicket(row.original)
                     setShowDetail(true)
@@ -259,14 +261,14 @@ export const TicketList = () => {
         </span>
 
         <button
-          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25"
+          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </button>
         <button
-          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-opacity-25"
+          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >

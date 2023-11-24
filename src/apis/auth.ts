@@ -28,12 +28,12 @@ export const getUser = async (): Promise<User> => {
       ? 'https://randomuser.me/api/portraits/lego/0.jpg'
       : 'https://randomuser.me/api/portraits/lego/1.jpg'
 
-  let menus = [{ label: 'Tickets', path: '/ticket' }]
+  let menus = [
+    { label: 'Tickets', path: '/ticket' },
+    { label: 'Settings', path: '/setting', borderTop: true },
+  ]
   if (role === 'admin') {
-    menus = [
-      { label: 'Overview', path: '/overview' },
-      { label: 'Tickets', path: '/ticket' },
-    ]
+    menus = [{ label: 'Overview', path: '/overview' }, ...menus]
   }
 
   return { email, name, pictureUrl, role, menus }

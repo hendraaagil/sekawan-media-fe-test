@@ -35,7 +35,7 @@ export const ListAction = ({ ticketId }: { ticketId: string }) => {
   return (
     <Popover className="relative">
       <Popover.Button
-        className="rounded-full p-2 transition-colors hover:bg-white focus:outline-none disabled:cursor-not-allowed"
+        className="rounded-full p-2 transition-colors hover:bg-white focus:outline-none disabled:cursor-not-allowed dark:text-white hover:dark:bg-dark-tremor-background"
         disabled={authProvider.role !== 'admin'}
       >
         <EllipsisVerticalIcon className="h-6 w-6" />
@@ -52,14 +52,14 @@ export const ListAction = ({ ticketId }: { ticketId: string }) => {
       >
         <Popover.Panel className="absolute -top-8 z-10 mt-3 min-w-fit max-w-sm -translate-x-full transform">
           <div className="overflow-hidden rounded-tremor-default shadow-lg">
-            <div className="relative grid gap-1 bg-white">
+            <div className="relative grid gap-1 bg-white dark:bg-dark-tremor-background">
               {actions.map((item) => (
                 <button
                   key={item.name}
                   onClick={item.handler}
-                  className="flex items-center px-4 py-3 transition-colors hover:bg-gray-100 focus:outline-none"
+                  className="flex items-center px-4 py-3 transition-colors hover:bg-gray-100 focus:outline-none hover:dark:bg-gray-800"
                 >
-                  <p className="font-medium text-tremor-content-emphasis">
+                  <p className="font-medium text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">
                     {item.name}
                   </p>
                 </button>

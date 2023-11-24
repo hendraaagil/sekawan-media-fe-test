@@ -1,9 +1,10 @@
-import { t } from 'i18next'
 import { useFetcher } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Button, Icon } from '@tremor/react'
 import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid'
 
 export const Logout = () => {
+  const { t } = useTranslation()
   const fetcher = useFetcher()
   const isLoggingOut = fetcher.formData != null
 

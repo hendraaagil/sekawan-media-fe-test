@@ -1,16 +1,32 @@
 import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { NavLink } from 'react-router-dom'
-import { ChartPieIcon, TicketIcon } from '@heroicons/react/24/solid'
+import {
+  ChartPieIcon,
+  Cog6ToothIcon,
+  TicketIcon,
+} from '@heroicons/react/24/solid'
 
 import { Menu } from '@/interfaces/user'
 import { Logout } from '@/components/layout'
 
+const getSidebarIcon = (path: string) => {
+  switch (path) {
+    case '/overview':
+      return ChartPieIcon
+    case '/ticket':
+      return TicketIcon
+    case '/setting':
+      return Cog6ToothIcon
+    default:
+      return ChartPieIcon
+  }
+}
+
 export const Sidebar = ({ menus }: { menus?: Menu[] }) => {
   const navigations = menus?.map((menu) => ({
-    path: menu.path,
-    label: menu.label,
-    Icon: menu.path === '/ticket' ? TicketIcon : ChartPieIcon,
+    ...menu,
+    Icon: getSidebarIcon(menu.path),
   }))
 
   return (
@@ -34,6 +50,9 @@ export const Sidebar = ({ menus }: { menus?: Menu[] }) => {
                     'hover:border-l-gray-50 hover:bg-gray-700 hover:text-gray-50',
                     {
                       'border-l-gray-50 bg-gray-700 text-gray-50': isActive,
+                    },
+                    {
+                      'mt-2 border-t border-t-gray-700': navigation.borderTop,
                     },
                   ),
                 )
