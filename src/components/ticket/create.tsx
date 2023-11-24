@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ZodError } from 'zod'
-import { Form, useActionData, useNavigation, useSubmit } from 'react-router-dom'
+import { useFetcher } from 'react-router-dom'
 import { Button, Select, SelectItem, TextInput, Textarea } from '@tremor/react'
 
 import { TicketPriority } from '@/constants/ticket'
@@ -9,33 +9,34 @@ import { TicketSchema } from '@/schemas/ticket'
 import { Heading, PriorityChip } from '@/components/ui'
 
 export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
+  const fetcher = useFetcher()
   const [priority, setPriority] = useState('')
-  const navigation = useNavigation()
-  const submit = useSubmit()
+  const [actionData, setActionData] = useState<
+    { errors: ZodError<TicketSchema>['formErrors']['fieldErrors'] } | undefined
+  >(undefined)
 
-  const isSubmitting =
-    navigation.formData?.get('title') != null &&
-    navigation.formData?.get('content') != null
-  const actionData = useActionData() as
-    | { errors: ZodError<TicketSchema>['formErrors']['fieldErrors'] }
-    | undefined
+  useEffect(() => {
+    if (fetcher.data) {
+      if (fetcher.data.errors) {
+        setActionData(fetcher.data)
+      } else {
+        closeFn()
+      }
+    }
+  }, [fetcher.data, closeFn])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
     formData.append('priority', priority)
-    submit(formData, { method: 'post' })
-
-    setTimeout(() => {
-      closeFn()
-    }, 1000)
+    fetcher.submit(formData, { method: 'post' })
   }
 
   return (
     <div className="space-y-4">
       <Heading size="h3">Create Ticket</Heading>
-      <Form method="post" className="space-y-4" onSubmit={handleSubmit}>
+      <fetcher.Form method="post" className="space-y-4" onSubmit={handleSubmit}>
         <div className="space-y-1">
           <label
             htmlFor="priority"
@@ -99,10 +100,14 @@ export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
             error={!!actionData?.errors.content}
           />
         </div>
-        <Button className="w-full" type="submit" loading={isSubmitting}>
+        <Button
+          className="w-full"
+          type="submit"
+          loading={fetcher.state === 'submitting'}
+        >
           Create Ticket
         </Button>
-      </Form>
+      </fetcher.Form>
     </div>
   )
 }

@@ -39,7 +39,8 @@ export const ticketAction = async ({ request }: LoaderFunctionArgs) => {
     }
 
     queryClient.invalidateQueries({ queryKey: ['ticket_list'] })
-    return redirect('/ticket')
+    toast.success('Ticket created successfully')
+    return { errors: null }
   }
 
   if (request.method.toLowerCase() === 'patch') {
