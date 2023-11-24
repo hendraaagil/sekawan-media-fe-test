@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Card, Select, SelectItem, Switch, Text } from '@tremor/react'
 
 import i18n from '@/configs/i18n'
@@ -8,6 +9,7 @@ import { settingProvider } from '@/providers/setting'
 export const SettingPage = () => {
   const defaultLang = 'en'
   const defaultIsDarkMode = false
+  const { t } = useTranslation()
   const [lang, setLang] = useState(settingProvider.lang)
   const [isDarkMode, setIsDarkMode] = useState(settingProvider.isDarkMode)
 
@@ -40,7 +42,7 @@ export const SettingPage = () => {
       <div className="p-6">
         <Card className="max-w-lg space-y-6">
           <div className="flex items-center justify-between space-x-2">
-            <Text>Language</Text>
+            <Text>{t('setting.language')}</Text>
             <Select
               className="min-w-fit max-w-xs"
               placeholder="Select language"
@@ -53,7 +55,7 @@ export const SettingPage = () => {
             </Select>
           </div>
           <div className="flex items-center justify-between space-x-2">
-            <Text>Dark Theme</Text>
+            <Text>{t('setting.theme')}</Text>
             <Switch
               id="dark"
               name="dark"
@@ -66,7 +68,7 @@ export const SettingPage = () => {
             onClick={handleReset}
             disabled={defaultLang === lang && defaultIsDarkMode === isDarkMode}
           >
-            Reset to default
+            {t('setting.reset')}
           </Button>
         </Card>
       </div>

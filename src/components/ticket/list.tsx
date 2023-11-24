@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { t } from 'i18next'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { format, formatDistance } from 'date-fns'
@@ -27,7 +28,7 @@ import { Dialog, PriorityChip } from '@/components/ui'
 
 const columns: ColumnDef<Ticket>[] = [
   {
-    header: 'Ticket Details',
+    header: t('ticket.detail.title'),
     size: 450,
     footer: (props) => props.column.id,
     accessorFn: (row) => row.title,
@@ -55,7 +56,7 @@ const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    header: 'Customer Name',
+    header: t('ticket.detail.customerName'),
     size: 200,
     footer: (props) => props.column.id,
     accessorFn: (row) => row.customerName,
@@ -65,7 +66,7 @@ const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    header: 'Date',
+    header: t('ticket.detail.date'),
     footer: (props) => props.column.id,
     accessorFn: (row) => row.createdAt,
     cell: (props) => {
@@ -83,7 +84,7 @@ const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    header: 'Priority',
+    header: t('ticket.detail.priority'),
     footer: (props) => props.column.id,
     accessorFn: (row) => row.priority,
     cell: (props) => {
@@ -92,7 +93,7 @@ const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    header: 'Actions',
+    header: t('ticket.detail.action'),
     size: 50,
     footer: (props) => props.column.id,
     cell: (props) => <ListAction ticketId={props.row.original.id} />,

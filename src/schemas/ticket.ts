@@ -1,12 +1,15 @@
+import { t } from 'i18next'
 import { z } from 'zod'
 
 export const ticketSchema = z
   .object({
-    title: z.string({ required_error: 'Title is required!' }),
-    content: z.string({ required_error: 'Description is required!' }),
+    title: z.string({ required_error: t('ticket.form.title.required') }),
+    content: z.string({
+      required_error: t('ticket.form.description.required'),
+    }),
     priority: z.enum(['low', 'medium', 'high'], {
-      required_error: 'Priority is required!',
-      invalid_type_error: 'Priority must be low, medium or high!',
+      required_error: t('ticket.form.priority.required'),
+      invalid_type_error: t('ticket.form.priority.invalid'),
     }),
   })
   .required()

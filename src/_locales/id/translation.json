@@ -2,9 +2,73 @@
   "login": {
     "title": "Masuk ke Dashboard",
     "subtitle": "Masukkan email dan password kamu di bawah",
-    "submit": "Masuk"
+    "submit": "Masuk",
+    "email": {
+      "placeholder": "Alamat Email",
+      "required": "Email tidak boleh kosong!",
+      "invalid": "Mohon masukkan email yang valid"
+    },
+    "password": {
+      "placeholder": "Password",
+      "required": "Password tidak boleh kosong!",
+      "invalid": "Password minimal 8 karakter"
+    }
   },
   "dashboard": {
+    "topbar": {
+      "search": "Cari tasks",
+      "notification": "Tampilkan notifikasi",
+      "altPicture": "Gambar pengguna"
+    },
     "logout": "Keluar"
+  },
+  "overview": {
+    "chartTitle": "Grafik tiket dalam 1 tahun"
+  },
+  "ticket": {
+    "successCreate": "Tiket berhasil dibuat!",
+    "successUpdate": "Tiket berhasil diupdate!",
+    "title": "Tiket",
+    "all": "Semua Tiket",
+    "create": "Buat Tiket",
+    "form": {
+      "title": {
+        "label": "Judul",
+        "placeholder": "Judul Tiket",
+        "required": "Judul tidak boleh kosong!"
+      },
+      "description": {
+        "label": "Deskripsi",
+        "placeholder": "Tulis deskripsi kamu di sini ...",
+        "required": "Deskripsi tidak boleh kosong!"
+      },
+      "priority": {
+        "label": "Prioritas",
+        "placeholder": "Pilih Prioritas",
+        "required": "Prioritas tidak boleh kosong!",
+        "invalid": "Mohon pilih prioritas yang valid"
+      }
+    },
+    "detail": {
+      "action": "Aksi",
+      "title": "Detail Tiket",
+      "customer": "Detail Customer",
+      "customerName": "Nama Customer",
+      "priority": "Prioritas",
+      "status": "Status",
+      "date": "Tanggal",
+      "createdAt": "Tanggal Dibuat",
+      "updatedAt": "Terakhir Diupdate",
+      "ticketTitle": "Judul",
+      "description": "Deskripsi",
+      "reject": "Tolak",
+      "approve": "Setujui",
+      "close": "Tutup"
+    }
+  },
+  "setting": {
+    "language": "Bahasa",
+    "theme": "Tema Gelap",
+    "reset": "Kembalikan ke default"
   }
 }

@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ZodError } from 'zod'
 import { useFetcher } from 'react-router-dom'
 import { Button, Select, SelectItem, TextInput, Textarea } from '@tremor/react'
@@ -9,6 +10,7 @@ import { TicketSchema } from '@/schemas/ticket'
 import { Heading, PriorityChip } from '@/components/ui'
 
 export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
+  const { t } = useTranslation()
   const fetcher = useFetcher()
   const [priority, setPriority] = useState('')
   const [actionData, setActionData] = useState<
@@ -35,18 +37,18 @@ export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
 
   return (
     <div className="space-y-4">
-      <Heading size="h3">Create Ticket</Heading>
+      <Heading size="h3">{t('ticket.create')}</Heading>
       <fetcher.Form method="post" className="space-y-4" onSubmit={handleSubmit}>
         <div className="space-y-1">
           <label
             htmlFor="priority"
             className="text-sm text-tremor-content-subtle"
           >
-            Priority
+            {t('ticket.form.priority.label')}
           </label>
           <Select
             id="priority"
-            placeholder="Select Priority"
+            placeholder={t('ticket.form.priority.placeholder')}
             value={priority}
             onValueChange={setPriority}
             className={clsx({
@@ -70,13 +72,13 @@ export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
         </div>
         <div className="space-y-1">
           <label htmlFor="title" className="text-sm text-tremor-content-subtle">
-            Title
+            {t('ticket.form.title.label')}
           </label>
           <TextInput
             id="title"
             type="text"
             name="title"
-            placeholder="Ticket Title"
+            placeholder={t('ticket.form.title.placeholder')}
             errorMessage={
               actionData?.errors.title ? actionData?.errors.title[0] : ''
             }
@@ -88,12 +90,12 @@ export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
             htmlFor="content"
             className="text-sm text-tremor-content-subtle"
           >
-            Description
+            {t('ticket.form.description.label')}
           </label>
           <Textarea
             id="content"
             name="content"
-            placeholder="Write your ticket description here ..."
+            placeholder={t('ticket.form.description.placeholder')}
             errorMessage={
               actionData?.errors.content ? actionData?.errors.content[0] : ''
             }
@@ -105,7 +107,7 @@ export const CreateTicket = ({ closeFn }: { closeFn: () => void }) => {
           type="submit"
           loading={fetcher.state === 'submitting'}
         >
-          Create Ticket
+          {t('ticket.create')}
         </Button>
       </fetcher.Form>
     </div>

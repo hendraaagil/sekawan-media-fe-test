@@ -2,9 +2,73 @@
   "login": {
     "title": "Login to Dashboard",
     "subtitle": "Enter your email and password below",
-    "submit": "Log In"
+    "submit": "Log In",
+    "email": {
+      "placeholder": "Email Address",
+      "required": "Email is required!",
+      "invalid": "Please enter a valid email address"
+    },
+    "password": {
+      "placeholder": "Password",
+      "required": "Password is required!",
+      "invalid": "Password must be at least 8 characters"
+    }
   },
   "dashboard": {
+    "topbar": {
+      "search": "Search tasks",
+      "notification": "Show notifications",
+      "altPicture": "User picture"
+    },
     "logout": "Log Out"
+  },
+  "overview": {
+    "chartTitle": "Tickets graph in 1 year"
+  },
+  "ticket": {
+    "successCreate": "Ticket created successfully!",
+    "successUpdate": "Ticket updated successfully!",
+    "title": "Tickets",
+    "all": "All Tickets",
+    "create": "Create Ticket",
+    "form": {
+      "title": {
+        "label": "Title",
+        "placeholder": "Ticket Title",
+        "required": "Title is required!"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Write your ticket description here ...",
+        "required": "Description is required!"
+      },
+      "priority": {
+        "label": "Priority",
+        "placeholder": "Select Priority",
+        "required": "Priority is required!",
+        "invalid": "Priority must be low, medium or high!"
+      }
+    },
+    "detail": {
+      "action": "Actions",
+      "title": "Ticket Detail",
+      "customer": "Customer Detail",
+      "customerName": "Customer Name",
+      "priority": "Priority",
+      "status": "Status",
+      "date": "Date",
+      "createdAt": "Created At",
+      "updatedAt": "Last Updated",
+      "ticketTitle": "Title",
+      "description": "Description",
+      "reject": "Reject",
+      "approve": "Approve",
+      "close": "Close"
+    }
+  },
+  "setting": {
+    "language": "Language",
+    "theme": "Dark Theme",
+    "reset": "Reset to default"
   }
 }

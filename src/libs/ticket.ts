@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { t } from 'i18next'
 import { LoaderFunctionArgs, redirect } from 'react-router-dom'
 
 import { TicketPriority, TicketStatus } from '@/constants/ticket'
@@ -39,7 +40,7 @@ export const ticketAction = async ({ request }: LoaderFunctionArgs) => {
     }
 
     queryClient.invalidateQueries({ queryKey: ['ticket_list'] })
-    toast.success('Ticket created successfully')
+    toast.success(t('ticket.successCreate'))
     return { errors: null }
   }
 
@@ -49,7 +50,7 @@ export const ticketAction = async ({ request }: LoaderFunctionArgs) => {
     const ticketId = (formData.get('ticketId') as string) || undefined
 
     await updateTicket(ticketId as string, status as TicketStatus)
-    toast.success('Ticket updated successfully')
+    toast.success(t('ticket.successUpdate'))
 
     queryClient.invalidateQueries({ queryKey: ['ticket_list'] })
     return redirect('/ticket')

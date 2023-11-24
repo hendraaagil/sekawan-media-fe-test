@@ -1,5 +1,6 @@
-import { format } from 'date-fns'
 import { useFetcher } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { format } from 'date-fns'
 import { Button } from '@tremor/react'
 
 import { authProvider } from '@/providers/auth'
@@ -14,6 +15,7 @@ export const DetailTicket = ({
   ticket: Ticket
   closeFn: () => void
 }) => {
+  const { t } = useTranslation()
   const fetcher = useFetcher()
   const isAdmin = authProvider.role === 'admin'
 
@@ -30,9 +32,11 @@ export const DetailTicket = ({
 
   return (
     <div className="space-y-4">
-      <Heading size="h3">Detail Ticket</Heading>
+      <Heading size="h3">{t('ticket.detail.title')}</Heading>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Customer Detail</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.customer')}
+        </p>
         <div className="flex items-center">
           <img
             src={ticket.pictureUrl}
@@ -43,31 +47,43 @@ export const DetailTicket = ({
         </div>
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Priority</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.priority')}
+        </p>
         <PriorityChip priority={ticket.priority} />
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Status</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.status')}
+        </p>
         <StatusChip status={ticket.status} />
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Created At</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.createdAt')}
+        </p>
         <p className="capitalize dark:text-white">
           {format(new Date(ticket.createdAt), 'PP p')}
         </p>
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Last Updated</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.updatedAt')}
+        </p>
         <p className="capitalize dark:text-white">
           {format(new Date(ticket.updatedAt), 'PP p')}
         </p>
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Title</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.ticketTitle')}
+        </p>
         <p className="dark:text-white">{ticket.title}</p>
       </div>
       <div className="space-y-1">
-        <p className="text-sm text-tremor-content-subtle">Description</p>
+        <p className="text-sm text-tremor-content-subtle">
+          {t('ticket.detail.description')}
+        </p>
         <p className="dark:text-white">{ticket.content}</p>
       </div>
       {isAdmin && ticket.status === TicketStatus.Pending ? (
@@ -79,7 +95,7 @@ export const DetailTicket = ({
             onClick={() => actionHandler(TicketStatus.Rejected)}
             loading={fetcher.state === 'submitting'}
           >
-            Reject
+            {t('ticket.detail.reject')}
           </Button>
           <Button
             size="lg"
@@ -88,12 +104,12 @@ export const DetailTicket = ({
             onClick={() => actionHandler(TicketStatus.Approved)}
             loading={fetcher.state === 'submitting'}
           >
-            Approve
+            {t('ticket.detail.approve')}
           </Button>
         </div>
       ) : (
         <Button size="lg" className="w-full" onClick={closeFn}>
-          Close
+          {t('ticket.detail.close')}
         </Button>
       )}
     </div>

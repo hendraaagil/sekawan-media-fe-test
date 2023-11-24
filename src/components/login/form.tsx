@@ -1,4 +1,4 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { ZodError } from 'zod'
 import { Form, useActionData, useNavigation } from 'react-router-dom'
 import { Button, TextInput } from '@tremor/react'
@@ -6,6 +6,7 @@ import { Button, TextInput } from '@tremor/react'
 import { AuthSchema } from '@/schemas/auth'
 
 export const LoginForm = () => {
+  const { t } = useTranslation()
   const navigation = useNavigation()
   const isLoggingIn =
     navigation.formData?.get('email') != null &&
@@ -25,7 +26,7 @@ export const LoginForm = () => {
           id="email"
           type="email"
           name="email"
-          placeholder="Email Address"
+          placeholder={t('login.email.placeholder')}
           errorMessage={
             actionData?.errors.email ? actionData?.errors.email[0] : ''
           }
@@ -44,7 +45,7 @@ export const LoginForm = () => {
           id="password"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder={t('login.password.placeholder')}
           errorMessage={
             actionData?.errors.password ? actionData?.errors.password[0] : ''
           }

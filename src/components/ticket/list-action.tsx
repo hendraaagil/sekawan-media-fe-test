@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
@@ -7,11 +8,12 @@ import { authProvider } from '@/providers/auth'
 import { TicketStatus } from '@/constants/ticket'
 
 export const ListAction = ({ ticketId }: { ticketId: string }) => {
+  const { t } = useTranslation()
   const submit = useSubmit()
 
   const actions = [
     {
-      name: 'Approve',
+      name: t('ticket.detail.approve'),
       handler: () => {
         const formData = new FormData()
         formData.append('ticketId', ticketId)
@@ -21,7 +23,7 @@ export const ListAction = ({ ticketId }: { ticketId: string }) => {
       },
     },
     {
-      name: 'Reject',
+      name: t('ticket.detail.reject'),
       handler: () => {
         const formData = new FormData()
         formData.append('ticketId', ticketId)
