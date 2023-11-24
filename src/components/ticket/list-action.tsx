@@ -2,6 +2,8 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
 
+import { authProvider } from '@/providers/auth'
+
 const actions = [
   {
     name: 'Approve',
@@ -20,7 +22,10 @@ const actions = [
 export const ListAction = () => {
   return (
     <Popover className="relative">
-      <Popover.Button className="rounded-full p-2 transition-colors hover:bg-white focus:outline-none">
+      <Popover.Button
+        className="rounded-full p-2 transition-colors hover:bg-white focus:outline-none disabled:cursor-not-allowed"
+        disabled={authProvider.role !== 'admin'}
+      >
         <EllipsisVerticalIcon className="h-6 w-6" />
       </Popover.Button>
 

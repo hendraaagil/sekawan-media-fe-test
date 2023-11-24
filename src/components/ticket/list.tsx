@@ -167,29 +167,37 @@ export const TicketList = () => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <tr
-                key={row.id}
-                className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100"
-              >
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td
-                      key={cell.id}
-                      className="py-4 first:pl-8 last:pr-8"
-                      style={{ width: cell.column.getSize() }}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
+          {table.getRowModel().rows.length ? (
+            table.getRowModel().rows.map((row) => {
+              return (
+                <tr
+                  key={row.id}
+                  className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100"
+                >
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td
+                        key={cell.id}
+                        className="py-4 first:pl-8 last:pr-8"
+                        style={{ width: cell.column.getSize() }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })
+          ) : (
+            <tr className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100">
+              <td className="py-4 text-center first:pl-8 last:pr-8" colSpan={5}>
+                No Data
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 

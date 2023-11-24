@@ -26,13 +26,13 @@ export const router = createBrowserRouter([
   {
     path: '/overview',
     element: <OverviewPage />,
-    loader: protectedLoader,
+    loader: () => protectedLoader(['admin']),
   },
   {
     id: 'ticket',
     path: '/ticket',
     element: <TicketPage />,
-    loader: protectedLoader,
+    loader: () => protectedLoader(['admin', 'guest']),
     action: ticketAction,
   },
   {

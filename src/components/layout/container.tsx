@@ -15,7 +15,7 @@ export const Container = ({
 
   return (
     <>
-      <Sidebar />
+      <Sidebar menus={user?.menus} />
       <main className="min-h-screen w-full bg-gray-100 pl-20 sm:pl-24 md:pl-56 lg:pl-80">
         <Topbar title={title} user={user} />
         {children}

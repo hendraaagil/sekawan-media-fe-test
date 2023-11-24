@@ -23,6 +23,9 @@ export const loginAction = async ({ request }: LoaderFunctionArgs) => {
     console.error(error)
   }
 
+  if (authProvider.role !== 'admin') {
+    return redirect('/ticket')
+  }
   return redirect('/overview')
 }
 
@@ -33,15 +36,22 @@ export const logoutAction = async () => {
 
 export const loginLoader = () => {
   if (authProvider.token) {
+    if (authProvider.role !== 'admin') {
+      return redirect('/ticket')
+    }
     return redirect('/overview')
   }
 
   return null
 }
 
-export const protectedLoader = async () => {
+export const protectedLoader = async (allowedRoles: string[]) => {
   if (!authProvider.token) {
     return redirect('/login')
+  }
+
+  if (!allowedRoles.includes(authProvider.role || '')) {
+    return redirect('/not-found')
   }
 
   return null

@@ -36,6 +36,11 @@ export const getTicketGraph = async (): Promise<TicketGraph[]> => {
 export const getTickets = async (): Promise<Ticket[]> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
 
+  const existingTickets = localStorage.getItem('myTickets')
+  if (existingTickets) {
+    const guestTickets: Ticket[] = JSON.parse(existingTickets)
+    return guestTickets.concat(makeTickets(200 - guestTickets.length))
+  }
   return makeTickets(200)
 }
 
@@ -57,9 +62,19 @@ export const createTicket = async (ticket: TicketSchema): Promise<Ticket> => {
 
   let myTickets: Ticket[] = [createdTicket]
   if (existingTickets) {
-    myTickets = [...JSON.parse(existingTickets), createdTicket]
+    myTickets = [createdTicket, ...JSON.parse(existingTickets)]
   }
   localStorage.setItem('myTickets', JSON.stringify(myTickets))
 
   return createdTicket
+}
+
+export const getMyTickets = async (): Promise<Ticket[]> => {
+  await new Promise((r) => setTimeout(r, 1000)) // fake delay
+
+  const existingTickets = localStorage.getItem('myTickets')
+  if (existingTickets) {
+    return JSON.parse(existingTickets)
+  }
+  return []
 }

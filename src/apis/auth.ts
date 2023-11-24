@@ -21,11 +21,20 @@ export const getUser = async (): Promise<User> => {
 
   const email = localStorage.getItem('email') || ''
   const role = email === 'admin@agil.dev' ? 'admin' : 'guest'
+
   const name = role === 'admin' ? 'Hendra Agil' : 'Guest User'
   const pictureUrl =
     role === 'admin'
       ? 'https://randomuser.me/api/portraits/lego/0.jpg'
       : 'https://randomuser.me/api/portraits/lego/1.jpg'
 
-  return { email, name, pictureUrl, role }
+  let menus = [{ label: 'Tickets', path: '/ticket' }]
+  if (role === 'admin') {
+    menus = [
+      { label: 'Overview', path: '/overview' },
+      { label: 'Tickets', path: '/ticket' },
+    ]
+  }
+
+  return { email, name, pictureUrl, role, menus }
 }
