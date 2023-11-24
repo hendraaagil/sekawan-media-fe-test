@@ -39,10 +39,10 @@ export const SettingPage = () => {
     <Container title="Settings">
       <div className="p-6">
         <Card className="max-w-lg space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between space-x-2">
             <Text>Language</Text>
             <Select
-              className="max-w-xs"
+              className="min-w-fit max-w-xs"
               placeholder="Select language"
               value={lang}
               onValueChange={setLang}
@@ -52,7 +52,7 @@ export const SettingPage = () => {
               <SelectItem value="id">Indonesia</SelectItem>
             </Select>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between space-x-2">
             <Text>Dark Theme</Text>
             <Switch
               id="dark"
