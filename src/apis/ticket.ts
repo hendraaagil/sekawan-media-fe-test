@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+
 import { Ticket, TicketGraph, TicketOverview } from '@/interfaces/ticket'
 import { authProvider } from '@/providers/auth'
 import { TicketSchema } from '@/schemas/ticket'
@@ -48,6 +50,7 @@ export const createTicket = async (ticket: TicketSchema): Promise<Ticket> => {
   await new Promise((r) => setTimeout(r, 1000)) // fake delay
 
   const createdTicket = {
+    id: faker.string.uuid(),
     title: ticket.title,
     content: ticket.content,
     pictureUrl:
@@ -77,4 +80,13 @@ export const getMyTickets = async (): Promise<Ticket[]> => {
     return JSON.parse(existingTickets)
   }
   return []
+}
+
+export const updateTicket = async (
+  ticketId: string,
+  status: Ticket['status'],
+): Promise<Ticket> => {
+  await new Promise((r) => setTimeout(r, 1000)) // fake delay
+  console.log('Ticket updated', ticketId, status)
+  return makeTickets(1)[0]
 }

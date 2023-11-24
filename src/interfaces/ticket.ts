@@ -13,6 +13,7 @@ export interface TicketGraph {
 }
 
 export interface Ticket {
+  id: string
   title: string
   content: string
   pictureUrl: string

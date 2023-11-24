@@ -22,6 +22,7 @@ const newTicket = (): Ticket => {
     .toISOString()
 
   return {
+    id: faker.string.uuid(),
     title: faker.lorem.sentence(4),
     content: faker.lorem.paragraph(10),
     pictureUrl: faker.image.avatar(),

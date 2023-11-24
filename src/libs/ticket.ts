@@ -1,7 +1,8 @@
+import toast from 'react-hot-toast'
 import { LoaderFunctionArgs, redirect } from 'react-router-dom'
 
-import { TicketPriority } from '@/constants/ticket'
-import { createTicket } from '@/apis/ticket'
+import { TicketPriority, TicketStatus } from '@/constants/ticket'
+import { createTicket, updateTicket } from '@/apis/ticket'
 import { queryClient } from '@/configs/query'
 import { ticketSchema } from '@/schemas/ticket'
 
@@ -36,6 +37,18 @@ export const ticketAction = async ({ request }: LoaderFunctionArgs) => {
       }
       console.error(error)
     }
+
+    queryClient.invalidateQueries({ queryKey: ['ticket_list'] })
+    return redirect('/ticket')
+  }
+
+  if (request.method.toLowerCase() === 'patch') {
+    const formData = await request.formData()
+    const status = (formData.get('status') as string) || undefined
+    const ticketId = (formData.get('ticketId') as string) || undefined
+
+    await updateTicket(ticketId as string, status as TicketStatus)
+    toast.success('Ticket updated successfully')
 
     queryClient.invalidateQueries({ queryKey: ['ticket_list'] })
     return redirect('/ticket')

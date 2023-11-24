@@ -22,8 +22,8 @@ import {
 
 import { ticketListQuery } from '@/queries/ticket'
 import { Ticket } from '@/interfaces/ticket'
-import { PriorityChip } from '@/components/ui'
-import { ListAction } from '@/components/ticket'
+import { DetailTicket, ListAction } from '@/components/ticket'
+import { Dialog, PriorityChip } from '@/components/ui'
 
 const columns: ColumnDef<Ticket>[] = [
   {
@@ -93,13 +93,15 @@ const columns: ColumnDef<Ticket>[] = [
     header: 'Actions',
     size: 50,
     footer: (props) => props.column.id,
-    cell: () => <ListAction />,
+    cell: (props) => <ListAction ticketId={props.row.original.id} />,
   },
 ]
 
 export const TicketList = () => {
   const { data: tickets } = useQuery(ticketListQuery())
   const [sorting, setSorting] = useState<SortingState>([])
+  const [showDetail, setShowDetail] = useState(false)
+  const [ticket, setTicket] = useState<Ticket | null>(null)
 
   const table = useReactTable({
     data: tickets || [],
@@ -116,8 +118,16 @@ export const TicketList = () => {
     debugAll: process.env.NODE_ENV === 'development',
   })
 
+  const closeDialog = () => {
+    setShowDetail(false)
+  }
+
   return (
     <>
+      <Dialog isOpen={showDetail} onClose={closeDialog}>
+        <DetailTicket ticket={ticket as Ticket} closeFn={closeDialog} />
+      </Dialog>
+
       <table className="w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -173,6 +183,10 @@ export const TicketList = () => {
                 <tr
                   key={row.id}
                   className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100"
+                  onClick={() => {
+                    setTicket(row.original)
+                    setShowDetail(true)
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (

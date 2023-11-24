@@ -2,24 +2,36 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
 
+import { useSubmit } from 'react-router-dom'
 import { authProvider } from '@/providers/auth'
+import { TicketStatus } from '@/constants/ticket'
 
-const actions = [
-  {
-    name: 'Approve',
-    href: '#',
-  },
-  {
-    name: 'Reject',
-    href: '#',
-  },
-  {
-    name: 'Details',
-    href: '#',
-  },
-]
+export const ListAction = ({ ticketId }: { ticketId: string }) => {
+  const submit = useSubmit()
 
-export const ListAction = () => {
+  const actions = [
+    {
+      name: 'Approve',
+      handler: () => {
+        const formData = new FormData()
+        formData.append('ticketId', ticketId)
+        formData.append('status', TicketStatus.Approved)
+
+        submit(formData, { method: 'patch' })
+      },
+    },
+    {
+      name: 'Reject',
+      handler: () => {
+        const formData = new FormData()
+        formData.append('ticketId', ticketId)
+        formData.append('status', TicketStatus.Rejected)
+
+        submit(formData, { method: 'patch' })
+      },
+    },
+  ]
+
   return (
     <Popover className="relative">
       <Popover.Button
@@ -42,15 +54,15 @@ export const ListAction = () => {
           <div className="overflow-hidden rounded-tremor-default shadow-lg">
             <div className="relative grid gap-1 bg-white">
               {actions.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
+                  onClick={item.handler}
                   className="flex items-center px-4 py-3 transition-colors hover:bg-gray-100 focus:outline-none"
                 >
                   <p className="font-medium text-tremor-content-emphasis">
                     {item.name}
                   </p>
-                </a>
+                </button>
               ))}
             </div>
           </div>
