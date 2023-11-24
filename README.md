@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# Sekawan Media Frontend Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a dashboard app built with React.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is using:
 
-## Expanding the ESLint configuration
+- [Vite v5](https://vitejs.dev/blog/announcing-vite5.html)
+- [React v18](https://react.dev/)
+- [Tailwind v3](https://tailwindcss.com/) with [tremor](https://www.tremor.so/)
+- [React Router v6](https://reactrouter.com/en/6.20.0)
+- [React Query v5](https://tanstack.com/query/v5)
+- [React Table v8](https://tanstack.com/table/v8)
+- And others utilities library, can found at [package.json](/package.json)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Local Development Setup
 
-- Configure the top-level `parserOptions` property like this:
+Node.js `>= 18.x` is required and setup with [pnpm](https://pnpm.io/) is recommended.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+# Install all dependencies
+pnpm install
+
+# Serve
+pnpm dev
+
+# Build for production
+pnpm build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Authentication
+
+This app is using dummy / fake authentication. You can change it at [src/apis/auth.ts](src/apis/auth.ts#L9-L10).
+
+Or you can use the existing one:
+
+**Admin**
+
+- Email: `admin@agil.dev`
+- Password: `hendra123`
+
+**Guest**
+
+- Email: `guest@agil.dev`
+- Password: `hendra123`
