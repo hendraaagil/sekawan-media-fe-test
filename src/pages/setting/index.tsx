@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Card, Select, SelectItem, Switch, Title } from '@tremor/react'
+import { Button, Card, Select, SelectItem, Switch, Text } from '@tremor/react'
 
 import i18n from '@/configs/i18n'
 import { Container } from '@/components/layout'
 import { settingProvider } from '@/providers/setting'
 
 export const SettingPage = () => {
+  const defaultLang = 'en'
+  const defaultIsDarkMode = false
   const [lang, setLang] = useState(settingProvider.lang)
   const [isDarkMode, setIsDarkMode] = useState(settingProvider.isDarkMode)
 
@@ -28,12 +30,17 @@ export const SettingPage = () => {
     setIsDarkMode((prev) => !prev)
   }
 
+  const handleReset = () => {
+    setLang(defaultLang)
+    setIsDarkMode(defaultIsDarkMode)
+  }
+
   return (
     <Container title="Settings">
       <div className="p-6">
-        <Card className="space-y-6">
-          <div className="flex max-w-lg items-center justify-between">
-            <Title>Language</Title>
+        <Card className="max-w-lg space-y-6">
+          <div className="flex items-center justify-between">
+            <Text>Language</Text>
             <Select
               className="max-w-xs"
               placeholder="Select language"
@@ -45,8 +52,8 @@ export const SettingPage = () => {
               <SelectItem value="id">Indonesia</SelectItem>
             </Select>
           </div>
-          <div className="flex max-w-lg items-center justify-between">
-            <Title>Dark Theme</Title>
+          <div className="flex items-center justify-between">
+            <Text>Dark Theme</Text>
             <Switch
               id="dark"
               name="dark"
@@ -54,6 +61,13 @@ export const SettingPage = () => {
               onChange={toggleDarkMode}
             />
           </div>
+          <Button
+            className="w-full"
+            onClick={handleReset}
+            disabled={defaultLang === lang && defaultIsDarkMode === isDarkMode}
+          >
+            Reset to default
+          </Button>
         </Card>
       </div>
     </Container>

@@ -130,7 +130,7 @@ export const TicketList = () => {
         <DetailTicket ticket={ticket as Ticket} closeFn={closeDialog} />
       </Dialog>
 
-      <table className="w-full">
+      <table className="w-full" style={{ minWidth: 896 }}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -145,7 +145,8 @@ export const TicketList = () => {
                     className={clsx(
                       'py-2 text-start text-tremor-content-subtle first:pl-8 last:pr-8',
                       {
-                        'transition-colors hover:bg-gray-100': canSort,
+                        'transition-colors hover:bg-gray-100 dark:hover:bg-gray-800':
+                          canSort,
                       },
                     )}
                     style={{ width: header.getSize() }}
@@ -208,8 +209,11 @@ export const TicketList = () => {
               )
             })
           ) : (
-            <tr className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100">
-              <td className="py-4 text-center first:pl-8 last:pr-8" colSpan={5}>
+            <tr className="border-y transition-colors hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+              <td
+                className="py-4 text-center font-bold first:pl-8 last:pr-8 dark:text-white"
+                colSpan={5}
+              >
                 No Data
               </td>
             </tr>
@@ -217,13 +221,13 @@ export const TicketList = () => {
         </tbody>
       </table>
 
-      <div className="flex items-center justify-end gap-2 p-4">
+      <div className="flex min-w-[56rem] items-center justify-end gap-2 p-4">
         <div className="flex items-center">
           <span className="text-sm text-tremor-content-subtle">
             Rows per page:
           </span>
           <select
-            className="text-sm text-tremor-content-subtle"
+            className="rounded-tremor-small text-sm text-tremor-content-subtle"
             value={table.getState().pagination.pageSize}
             onChange={(e) => {
               table.setPageSize(Number(e.target.value))
@@ -255,20 +259,20 @@ export const TicketList = () => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0
               table.setPageIndex(page)
             }}
-            className="w-12 rounded border p-1"
+            className="w-12 rounded-tremor-small border p-1"
           />{' '}
           |
         </span>
 
         <button
-          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
+          className="rounded-tremor-small border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </button>
         <button
-          className="rounded border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
+          className="rounded-tremor-small border p-1 text-tremor-content-subtle hover:cursor-pointer disabled:cursor-not-allowed disabled:bg-tremor-content-subtle disabled:bg-opacity-25 dark:border-gray-800"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
